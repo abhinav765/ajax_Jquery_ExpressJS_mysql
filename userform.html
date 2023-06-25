@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#blr").blur(function(){
+                //alert("blur function executed")
+                var url = "http://localhost:9000/useridcheck?uid="+$("#blr").val();
+                //alert(url)
+                $.get(url,function(data,status){
+                    if(status=="success")
+                    {
+                        $("#dv").html(data);
+                    }
+                })
+            })
+            $("#blr").focus(function(){
+                $("#dv").html("");
+            })
+        })
+    </script>
+</head>
+<body>
+    <form>
+        Enter userid;
+        <input type="text" name="uid" id="blr"><div id="dv"></div>
+        <br/>
+        
+        Enter password:
+        <input type="password" name="pwd">
+        <br/>
+        <input type="button" value="varify">
+    </form>
+</body>
+</html>
